@@ -1,9 +1,11 @@
+import LinkForm from "./component/LinkForm/LinkForm";
 
 const App = () => {
 
   return (
     <>
-      <h1>Privet</h1>
+
+      <LinkForm />
     </>
   );
 };
