@@ -1,5 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import linkRouter from './routers/links';
+import mongoose from 'mongoose';
 
 
 
@@ -9,12 +11,16 @@ const port = 8000;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static('public'));
+app.use('/links', linkRouter)
 
 const run = async () => {
+  await mongoose.connect('mongodb://localhost/links');
   app.listen(port, () => {
     console.log('Listening on port', port);
-  })
+  });
+  process.on('exit', () => {
+    mongoose.disconnect();
+  });
 };
 
 void run();
