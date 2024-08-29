@@ -17,7 +17,7 @@ router.post('/', async (req, res, next) => {
       shortUrl
     });
     await link.save();
-    return res.send(shortUrl);
+    return res.json(shortUrl);
   } catch (error) {
     next(error);
   }
