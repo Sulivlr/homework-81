@@ -4,12 +4,14 @@ import Link from '../models/Link';
 
 const router = express.Router();
 
+const generateShortUrl = (length = 7) => Math.random().toString(36).substr(2, length);
+
 router.post('/', async (req, res, next) => {
   try {
     if (!req.body.url) {
       return res.status(400).send({error: 'URL is required'});
     }
-    const shortUrl = 'youtube'
+    const shortUrl = generateShortUrl();
     const link = new Link({
       originalUrl: req.body.url,
       shortUrl
